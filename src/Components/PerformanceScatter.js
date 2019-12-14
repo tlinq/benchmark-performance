@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import data from "./../Data/Data visualisation - homework - input";
 import {
   ScatterChart,
   Scatter,
@@ -10,8 +9,6 @@ import {
 } from "recharts";
 // import TestTooltip from "./testTooltip";
 import ScatterTooltip from "./ScatterTooltip"
-
-import PerformanceScatter from "./PerformanceScatter"
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
@@ -33,16 +30,7 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
-class Dashboard extends Component {
-  constructor(props) {
-    super(props);
-    // console.log(data.data)
-    this.state = { data: data.data };
-  }
-
-  getTest = () => {
-    console.log(this.state.data);
-  };
+class PerformanceScatter extends Component {
 
 
   render() {
@@ -51,12 +39,33 @@ class Dashboard extends Component {
 
     return (
       <div>
-        <button onClick={this.getTest}>test</button>
-        <PerformanceScatter data={this.state.data}></PerformanceScatter>
-        
+        <ScatterChart
+          width={1000}
+          height={400}
+          margin={{
+            top: 20,
+            right: 20,
+            bottom: 20,
+            left: 20
+          }}
+        >
+          <CartesianGrid />
+          <XAxis type="number" dataKey="index" name="Test" unit="" />
+          <YAxis
+            type="number"
+            dataKey="Relative Performance"
+            name="Performance"
+            unit=""
+            scale="log"
+            domain={["auto", "auto"]}
+          />
+          {/* <Tooltip cursor={{ strokeDasharray: "3 3" }} /> */}
+          <Tooltip content={<CustomTooltip />} />
+          <Scatter name="Benchmarking" data={this.props.data} fill="#8884d8" />
+        </ScatterChart>
       </div>
     );
   }
 }
 
-export default Dashboard;
+export default PerformanceScatter;
