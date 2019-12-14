@@ -3,7 +3,7 @@ import "./Tooltip.css";
 
 function Tooltip(props) {
   const params = props.benchmark.split("_").map((x, i) => {
-    console.log("tooltip", x);
+    // console.log("tooltip", x);
     if (i === 0) {
       return null;
     } else {
@@ -13,13 +13,13 @@ function Tooltip(props) {
   return (
     <div className="Tooltip">
       <div>
-        <p>Suite: {props.suite}</p>
-        <p>{props.category}</p>
-        <p>{props.subcategory}</p>
-        <p>
+        {/* <p>Suite: {props.suite}</p> */}
+        <p className="P">{props.category}</p>
+        <p className="P">{props.subcategory}</p>
+        <p className="P">
           New version: {props.new} {props.unit}
         </p>
-        <p>
+        <p className="P">
           Old version: {props.old} {props.unit}
         </p>
         <div>params: {params}</div>

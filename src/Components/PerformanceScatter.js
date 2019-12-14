@@ -5,14 +5,15 @@ import {
   XAxis,
   YAxis,
   CartesianGrid,
-  Tooltip
+  Tooltip,
+  Legend
 } from "recharts";
 // import TestTooltip from "./testTooltip";
 import ScatterTooltip from "./ScatterTooltip"
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active) {
-    console.log("payload", payload[0].payload);
+    // console.log("payload", payload[0].payload);
     return (
       <ScatterTooltip 
         relPerf={payload[0].payload["Relative Performance"]}
@@ -30,12 +31,26 @@ const CustomTooltip = ({ active, payload, label }) => {
   return null;
 };
 
+const suiteColour = {
+    "Core API": "#8884d8",
+    "Cypher": "#116466", 
+    "Kernel API": "#447AC4",
+    "Page Cache": "#66BFC2", 
+    "Procedures": "#BCDFC1"
+}
+
+
 class PerformanceScatter extends Component {
 
 
   render() {
+    const suites = [...new Set(this.props.data.map(x => x['Suite']))]
+    console.log("suites",suites)
 
-    
+    const scatters = suites.map(suite => {
+        let filtered_data = this.props.data.filter(x => x['Suite']===suite)
+        return <Scatter name={suite} data={filtered_data} fill={suiteColour[suite]} />
+    })
 
     return (
       <div>
@@ -61,7 +76,9 @@ class PerformanceScatter extends Component {
           />
           {/* <Tooltip cursor={{ strokeDasharray: "3 3" }} /> */}
           <Tooltip content={<CustomTooltip />} />
-          <Scatter name="Benchmarking" data={this.props.data} fill="#8884d8" />
+          {/* <Scatter name="Benchmarking" data={this.props.data} fill="#8884d8" /> */}
+          {scatters}
+          <Legend/>
         </ScatterChart>
       </div>
     );
