@@ -1,0 +1,17 @@
+.WrapperContainer {
+    width: 1300px;
+    /* background-color: silver; */
+    height: 100%;
+}
+
+.LeftContainer {
+    width: 500px;
+    float: left;
+    /* background-color: sandybrown; */
+}
+
+.RightContainer {
+    width: 800px;
+    float: right;
+    /* background-color: salmon; */
+}

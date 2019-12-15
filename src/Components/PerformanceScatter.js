@@ -11,7 +11,7 @@ import {
 // import TestTooltip from "./testTooltip";
 import ScatterTooltip from "./ScatterTooltip"
 
-const CustomTooltip = ({ active, payload, label }) => {
+const CustomTooltip = ({ active, payload }) => {
   if (active) {
     // console.log("payload", payload[0].payload);
     return (
@@ -55,7 +55,7 @@ class PerformanceScatter extends Component {
     return (
       <div>
         <ScatterChart
-          width={1000}
+          width={700}
           height={400}
           margin={{
             top: 20,
