@@ -18,8 +18,10 @@ The radar-schart shows on an overall squite level the median relative performanc
 The scatterchart shows the relative performance between the new and the old versions of the software for each individual benchmark
 
 The table shows the median relative performance for different types of operations
+Clicking a row in the table will show a table with the benchmarking tests associated to that specific group
 
 The dropdown menues lets the user select suites and groups of benchmark to be highlighted in the scatterchart and table
+
 
 #### Basis of the project
 

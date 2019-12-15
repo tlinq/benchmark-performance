@@ -53,6 +53,7 @@ class Table extends Component {
   render() {
     // console.log("Table", this.props.data);
     // console.log("Table sorted", this.sortByKey(this.props.data, "median"));
+    this.sortByKey(this.props.data, "median")
     const { header, content } = this.makeTable(this.props.data);
     return (
       <div className="TableWrapper">
