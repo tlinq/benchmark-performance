@@ -2,7 +2,12 @@ import React, { Component } from "react";
 import "./BenchmarkModal.css";
 
 class BenchmarkModal extends Component {
+    /**
+     * The BenchmarkModal presents a table with a subset of benchmark results, 
+     * It is shown when a user clickes a group of benchmarks in the table
+     */
   sortByKey = (array, key) => {
+    // This is a copy of the same sorting function used in Table.js
     return array.sort(function(a, b) {
       var x = a[key];
       var y = b[key];
@@ -11,12 +16,10 @@ class BenchmarkModal extends Component {
   };
 
   render() {
-    const data = this.sortByKey(this.props.data, "New");
-
-    console.log("[BenchmarkModal] - data", this.props.data);
-    // const tableHeaders = ["Suite", "Benchmark", "Old", "New", "Unit"].map(x => {
-    //   return <th className="Th">{x}</th>;
-    // });
+    const data = this.sortByKey(this.props.data, "Relative Performance");
+    /**
+     * Constructing the table for the modal manually here
+     */
     const tableHeaders = (
       <tr className="TableHeader">
         <th className="Tablehead">Suite</th>
@@ -43,7 +46,7 @@ class BenchmarkModal extends Component {
       <div className="ModalDark" onClick={this.props.closeSummaryModal}>
         <div className="BenchmarkTableWrapper">
           <table className="BenchmarkTable">
-              {tableHeaders}
+            {tableHeaders}
             {/* <tr className="TableHeader">{tableHeaders}</tr> */}
             {tableContent}
           </table>

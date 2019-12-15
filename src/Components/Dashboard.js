@@ -8,9 +8,17 @@ import Table from "./Table";
 import BenchmarkModal from "./BenchmarkModal";
 
 class Dashboard extends Component {
+    /**
+     * The dashboard component handels all the interaction and is the root in this application.
+     */
   constructor(props) {
     super(props);
-    // console.log(data.data)
+    /**
+     * The user can select to filter/highlight from suites 
+     * and benchmarks, the unique values of both are calculated here and assigned to the state int he constructor
+     */
+    
+    
     let options = [...new Set(data.data.map(x => x["Suite"]))];
     const suiteOptions = options.map(x => {
       return { value: x, label: x };
@@ -19,6 +27,7 @@ class Dashboard extends Component {
     const benchmarkCategories = options.map(x => {
       return { value: x, label: x };
     });
+    // Calculate the median Performance increase in each benchmark category and suite
     const categoryMedians = this.calcStats(
       data.data,
       "Category",
@@ -30,23 +39,30 @@ class Dashboard extends Component {
     this.state = {
       data: data.data,
       medians: medians,
+    //   Initiall scatterdata is the same as 'data', scatterdata can be filtered by the user
       scatterData: data.data,
       selectedSuites: null,
       selectedBenchmarks: null,
       suiteOptions: suiteOptions,
       benchmarkCategoryOptions: benchmarkCategories,
+    //   categoryMedians are shown in the table under the scatterplot
       categoryMedians: categoryMedians,
+    //   modalData will contain data selected to be displayed as a table in the modal.
       modalData: [],
       showSummaryModal: false
     };
   }
 
-  getTest = () => {
-    console.log(this.state.data);
-    console.log(this.state.medians);
-  };
+//   getTest = () => {
+
+//     console.log(this.state.data);
+//     console.log(this.state.medians);
+//   };
 
   calcMedian = values => {
+    /**
+     * This function calculates the median from an array of numbers
+     */
     if (values.length === 0) {
       return null;
     }
@@ -62,6 +78,10 @@ class Dashboard extends Component {
   };
 
   calcStats = (data, key, value) => {
+      /**
+       * calcStats calcualtes the median over a dataset, where key is the groups over which 
+       * the median is calculated and value, is the variable
+       */
     if (data) {
       console.log("calcStats", data);
       const suites = [...new Set(data.map(x => x[key]))];
@@ -93,6 +113,10 @@ class Dashboard extends Component {
   };
 
   updateDisplayedData = (suites, benchmarks) => {
+      /**
+       * Fitleres scatterdata on selected suites and benchmark groups
+       * This limits what is displayed int he tables and figures
+       */
     let filtered_data = [...this.state.data];
     if (suites) {
       let selectedSuites = suites.map(x => x.value);
@@ -116,8 +140,8 @@ class Dashboard extends Component {
   };
 
   showSummaryModal = row => {
-    //   console.log("Dashboard", row)
-    const modalData = this.state.data.filter(x => x["Category"] === row.key);
+    //   filteres the active data to only being displayed in the modal
+    const modalData = this.state.scatterData.filter(x => x["Category"] === row.key);
 
     this.setState({ modalData: modalData, showSummaryModal: true });
     console.log("modalData", modalData);
@@ -140,7 +164,7 @@ class Dashboard extends Component {
       <div>
         {benchmarkModal}
         <div className="WrapperContainer">
-          {/* <button onClick={this.getTest}>test</button> */}
+            {/* Splitting the layout in a left and right div */}
           <div className="LeftContainer">
             <h4>Median Performance Change by Suite</h4>
             <PerfRadarChart medians={this.state.medians} />

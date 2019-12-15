@@ -2,12 +2,11 @@ import React, { Component } from "react";
 import "./Table.css"
 
 class Table extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
 
   sortByKey = (array, key) => {
+    /**
+     * Sorting function to sort an array of pbjects by values associated to a given key
+     */
     return array.sort(function(a, b) {
       var x = a[key];
       var y = b[key];
@@ -15,9 +14,7 @@ class Table extends Component {
     });
   };
 
-  sortIt = () => {
-      console.log("sort")
-  }
+
 
   rowClicked = (row) => {
       console.log("tableRow", row)
@@ -31,7 +28,7 @@ class Table extends Component {
         "Benchamark Group",
         "Median Performance Change"
       ].map(x => {
-        return <th  onClick={() => this.sortIt()} className="Th">{x}</th>;
+        return <th  className="Th">{x}</th>;
       });
       const tableContent = data.map(row => {
         return (
