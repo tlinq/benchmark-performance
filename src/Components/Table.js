@@ -19,6 +19,11 @@ class Table extends Component {
       console.log("sort")
   }
 
+  rowClicked = (row) => {
+      console.log("tableRow", row)
+        this.props.showSummary(row)
+  }
+
   makeTable = data => {
     if (data.length>0) {
       const keys = Object.keys(data[0]);
@@ -30,7 +35,7 @@ class Table extends Component {
       });
       const tableContent = data.map(row => {
         return (
-          <tr>
+          <tr className="Tr" onClick={()=> this.rowClicked(row)}>
             {keys.map((key, i) => {
               if (i>0){
                 return <td style={{textAlign: "center"}}>{row[key]}</td>    
@@ -46,8 +51,8 @@ class Table extends Component {
   };
 
   render() {
-    console.log("Table", this.props.data);
-    console.log("Table sorted", this.sortByKey(this.props.data, "median"));
+    // console.log("Table", this.props.data);
+    // console.log("Table sorted", this.sortByKey(this.props.data, "median"));
     const { header, content } = this.makeTable(this.props.data);
     return (
       <div className="TableWrapper">

@@ -29,7 +29,9 @@ class Dashboard extends Component {
       selectedBenchmarks: null,
       suiteOptions: suiteOptions,
       benchmarkCategoryOptions: benchmarkCategories,
-      categoryMedians: categoryMedians
+      categoryMedians: categoryMedians,
+      modalData:[],
+      showSummaryModal: false
     };
   }
 
@@ -100,6 +102,19 @@ class Dashboard extends Component {
       this.setState({scatterData:filtered_data, categoryMedians:medians})
   }
 
+  showSummaryModal = (row) => {
+    //   console.log("Dashboard", row)
+      const modalData = this.state.data.filter(x => x['Category'] === row.key);
+
+      this.setState({modalData:modalData, showSummaryModal:true})
+      console.log("modalData", modalData)
+
+  }
+
+  closeSummaryModal = () => {
+    this.setState({showSummaryModal:false})
+  }
+
   render() {
     return (
       <div className="WrapperContainer">
@@ -125,7 +140,7 @@ class Dashboard extends Component {
         <div className="RightContainer">
           <h4>Detailed Performance Change by Benchmark</h4>
           <PerformanceScatter data={this.state.scatterData} />
-          <Table data={this.state.categoryMedians}/>
+          <Table data={this.state.categoryMedians} showSummary={this.showSummaryModal}/>
         </div>
       </div>
     );
