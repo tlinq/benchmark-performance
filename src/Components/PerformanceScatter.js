@@ -55,8 +55,8 @@ class PerformanceScatter extends Component {
     return (
       <div>
         <ScatterChart
-          width={700}
-          height={400}
+          width={850}
+          height={350}
           margin={{
             top: 20,
             right: 20,
@@ -65,7 +65,7 @@ class PerformanceScatter extends Component {
           }}
         >
           <CartesianGrid />
-          <XAxis type="number" dataKey="index" name="Test" unit="" />
+          <XAxis type="number" dataKey="index" name="Test" unit="" domain={["auto", "auto"]}/>
           <YAxis
             type="number"
             dataKey="Relative Performance"

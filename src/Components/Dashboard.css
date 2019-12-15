@@ -1,5 +1,5 @@
 .WrapperContainer {
-    width: 1300px;
+    width: 1400px;
     /* background-color: silver; */
     height: 100%;
 }
@@ -11,7 +11,13 @@
 }
 
 .RightContainer {
-    width: 800px;
+    width: 900px;
     float: right;
     /* background-color: salmon; */
 }
+
+.Selectcontainer {
+    width: 400px;
+    margin-left: 70px;
+}
+
