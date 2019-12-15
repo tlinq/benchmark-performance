@@ -1,0 +1,22 @@
+.Table {
+    margin-left: 100px;
+    text-align: left;
+}
+
+.TableWrapper {
+    max-height: 300px;
+    overflow-y: auto;
+    width: 800px;
+}
+
+.TableHeader {
+    border: slategray;
+    background-color: rgba(153, 153, 153, 0.425);
+    cursor: pointer;
+    
+}
+
+.Th {
+    margin: 2px, 2px, 2px, 2px;
+    width:50%;
+}

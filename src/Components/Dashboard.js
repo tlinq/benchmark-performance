@@ -105,7 +105,7 @@ class Dashboard extends Component {
       <div className="WrapperContainer">
         {/* <button onClick={this.getTest}>test</button> */}
         <div className="LeftContainer">
-          <h4>Median performance change by Suite</h4>
+          <h4>Median Performance Change by Suite</h4>
           <PerfRadarChart medians={this.state.medians} />
           <div className="Selectcontainer">
             <h5>Select Suites to Highlight</h5>
@@ -123,7 +123,7 @@ class Dashboard extends Component {
           </div>
         </div>
         <div className="RightContainer">
-          <h4>Detailed performance change by Benchmark</h4>
+          <h4>Detailed Performance Change by Benchmark</h4>
           <PerformanceScatter data={this.state.scatterData} />
           <Table data={this.state.categoryMedians}/>
         </div>

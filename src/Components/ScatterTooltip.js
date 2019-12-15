@@ -22,6 +22,9 @@ function Tooltip(props) {
         <p className="P">
           Old version: {props.old} {props.unit}
         </p>
+        <p className="P">
+          Relative Performance: {Math.round(props.relPerf*100)/100}
+        </p>
         <div>params: {params}</div>
       </div>
     </div>
